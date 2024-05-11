@@ -20,7 +20,12 @@ import authMiddleware from "../common/auth_middleware";
 *       required:
 *         - _id
 *         - name
-*         - age
+*         - year
+*         - faculty
+*         - profilePic
+*         - gender
+*         - posts
+*         - tokens
 *       properties:
 *         _id:
 *           type: string
@@ -28,13 +33,33 @@ import authMiddleware from "../common/auth_middleware";
 *         name:
 *           type: string
 *           description: The user name
-*         age:
+*         year:
 *           type: number
-*           description: The user age
+*           description: The user year
+*         faculty:
+*           type: string
+*           description: The user faculty
+*         profilePic:
+*           type: File
+*           description: The user profile picture
+*         gender:
+*           type: string
+*           description: The user gender
+*         posts:
+*           type: array
+*           description: The user posts
+*         tokens:
+*           type: array
+*           description: The user tokens
 *       example:
 *         _id: '12345'
 *         name: 'jhon'
-*         age: 25
+*         year: 4
+*         faculty: 'Software Engineering'
+*         profilePic: 'null'
+*         posts: []
+*         gender: 'Male'
+* 
 */
 
 

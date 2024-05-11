@@ -7,7 +7,9 @@ import User from "../models/user_model";
 
 const user = {
     email: "teszt@gmail.com",
-    password: "123456"
+    password: "123456",
+    accessToken: null
+
 }
 
 let app: Express;
@@ -130,5 +132,6 @@ describe("Auth test", () => {
             .send();
         expect(res2.statusCode).not.toBe(200);
     });
+
 
 });

@@ -1,10 +1,15 @@
 import mongoose from "mongoose";
+// import { File } from 
 
 
 export interface IStudent {
   name: string;
-  _id: string;
-  age: number;
+  faculty: string;
+  _uid?: string;
+  year: number;
+  profilePic?: string;
+  gender?: string;
+  posts?: string[];
 }
 
 const studentSchema = new mongoose.Schema<IStudent>({
@@ -12,14 +17,26 @@ const studentSchema = new mongoose.Schema<IStudent>({
     type: String,
     required: true,
   },
-  _id: {
+  faculty: {
     type: String,
     required: true,
   },
-  age: {
+  year: {
     type: Number,
     required: true,
   },
+  profilePic: {
+    type: String,
+    default: null,
+  },
+  gender: {
+    type: String,
+    required: true,
+  },
+  posts: {
+    type: [String],
+  },
+
 });
 
 export default mongoose.model<IStudent>("Student", studentSchema);
