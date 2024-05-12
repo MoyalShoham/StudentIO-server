@@ -7,9 +7,10 @@ export interface IUser {
     password: string;
     tokens: string[];
     _id?: string;
-    student: IStudent;
+    student?: IStudent;
     profile_picture?: string;
-
+    full_name?: string;
+    gender: string;
 
 }
 
@@ -27,11 +28,18 @@ const userSchema = new mongoose.Schema<IUser>({
     },
     student: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
     },
     profile_picture: {
         type: String,
         default: 'null'
+    },
+    full_name: {
+        type: String,
+        default: 'null'
+    },
+    gender: {
+        type: String,
+        required: true
     }
 });
 

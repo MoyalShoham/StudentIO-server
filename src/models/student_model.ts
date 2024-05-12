@@ -1,20 +1,16 @@
 import mongoose from "mongoose";
+// import { IPost } from "./post_model";
 // import { File } from 
 
 
 export interface IStudent {
-  name: string;
   faculty: string;
   year: number;
-  gender?: string;
-  posts?: string[];
+  posts: string[];
 }
 
 const studentSchema = new mongoose.Schema<IStudent>({
-  name: {
-    type: String,
-    required: true,
-  },
+
   faculty: {
     type: String,
     required: true,
@@ -23,12 +19,11 @@ const studentSchema = new mongoose.Schema<IStudent>({
     type: Number,
     required: true,
   },
-  gender: {
-    type: String,
-    required: true,
-  },
+
   posts: {
     type: [String],
+    required: false,
+    default: [],
   },
 
 });

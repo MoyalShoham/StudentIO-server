@@ -65,7 +65,7 @@ describe("Post tests", () => {
         expect(res.statusCode).toBe(200);
         const data = res.body;
         const post = data[0];
-        const res2 = await request(app).get("/post/" + post._id);
+        const res2 = await request(app).get("/post/" + post._pid);
         expect(res2.statusCode).toBe(200);
         expect(res2.body.title).toEqual(post.title);
     });
@@ -75,7 +75,7 @@ describe("Post tests", () => {
         expect(res.statusCode).toBe(200);
         const data = res.body;
         const post = data[0];
-        const res2 = await request(app).delete("/post/" + post._id)
+        const res2 = await request(app).delete("/post/" + post._pid)
             .set('Authorization', 'Bearer ' + testUser.accessToken);
         expect(res2.statusCode).toBe(200);
     });

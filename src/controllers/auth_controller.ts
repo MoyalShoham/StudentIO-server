@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import User from "../models/user_model";
+import Student from "../models/student_model";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -7,6 +8,11 @@ const register = async (req: Request, res: Response) => {
     console.log(req.body);
     const email = req.body.email;
     const password = req.body.password;
+    const full_name = req.body.full_name;
+    const profile_picture = req.body.profile_picture;
+    const gender = req.body.gender;
+    const { faculty, year } = req.body.student
+
 
     if (email == null || password == null) {
         return res.status(400).send("missing email or password");
@@ -20,9 +26,19 @@ const register = async (req: Request, res: Response) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
+        const newStudent =  await Student.create({
+            faculty: faculty,
+            year: year,
+        });
+
+
         const newUser = await User.create({
             email: email,
-            password: hashedPassword
+            password: hashedPassword,
+            profile_picture: profile_picture,
+            full_name: full_name,
+            gender: gender,
+            student: newStudent
         });
 
         return res.status(200).send(newUser);
