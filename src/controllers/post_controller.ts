@@ -39,11 +39,35 @@ class PostController extends BaseController<IPost> {
     // ...
 
 
-    
+    async edit_post(req: Request, res: Response) {
+        try {
+            console.log("update post");
+            const post = await Post.findByIdAndUpdate(req.params.id, req.body);
+            res.status(200).send(post);
+        } catch(error) {
+            res.status(400).send(error.message);
+        }
+    }
+
+    async delete_post(req: Request, res: Response) {
+        try {
+            console.log("delete post");
+            const postRef = await Post.findById(req.params.id);
+            const userRef = await User.findById(postRef.owner);
+            userRef.posts = userRef.posts.filter((_pid) => _pid != `ObjectId(${req.params.id})`);
+            await userRef.save();
+            const post = await Post.findByIdAndDelete(req.params.id);
+            res.status(200).send(post);
+        } catch(error) {
+            res.status(400).send(error.message);
+        }
+
+    }
+        
 
     // upload file
     // need to fix
-    
+
     async upload_file(req: Request & {file : Multer.File}, res: Response) {
             
         console.log("upload file");

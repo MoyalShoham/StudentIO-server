@@ -84,7 +84,7 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "email": "test@gmail.com",
+    "email": "moyal.shoham@gmail.com",
     "password": "123456"
 }
 
@@ -93,10 +93,10 @@ Content-Type: application/json
 
 POST http://localhost:3000/post/upload
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQwYWZmMTNmNTIxZDZjM2Q1NjkyMTIiLCJpYXQiOjE3MTU1MjE3MjYsImV4cCI6MTcxNTUyNDcyNn0.C_bYVu_YkyHyTmL1ZFJ3gRKLSq6t5FJn1nKCBaeLSfU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQxMDZkMmZkMDU5OGNhMTJhNjc2OTYiLCJpYXQiOjE3MTU1Mzc2NDEsImV4cCI6MTcxNTU0MDY0MX0.C_DFKOes3_B5u_Fezux9T3C-euNurPAhoZCae65bB9I
 
 {
-    "message": "Paam Shnia",
+    "message": "Test Gadol",
     "image": "stamTmuna.jpg"
 }
 
@@ -104,12 +104,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQwYWZmM
 ###
 
 GET http://localhost:3000/post/my/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQwZDU2NTE0YWM3NmU0MjdmMjA1N2IiLCJpYXQiOjE3MTU1MjQ5ODcsImV4cCI6MTcxNTUyNzk4N30.2QG6hwLApj3o7f2cooj6biMJ1ZU8HKF0wuQebb6bjHA
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQxMDZkMmZkMDU5OGNhMTJhNjc2OTYiLCJpYXQiOjE3MTU1Mzc2NDEsImV4cCI6MTcxNTU0MDY0MX0.C_DFKOes3_B5u_Fezux9T3C-euNurPAhoZCae65bB9I
 ###
 
 GET http://localhost:3000/post/all/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQwZDU2NTE0YWM3NmU0MjdmMjA1N2IiLCJpYXQiOjE3MTU1MjQ5ODcsImV4cCI6MTcxNTUyNzk4N30.2QG6hwLApj3o7f2cooj6biMJ1ZU8HKF0wuQebb6bjHA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQxMDZkMmZkMDU5OGNhMTJhNjc2OTYiLCJpYXQiOjE3MTU1Mzc2NDEsImV4cCI6MTcxNTU0MDY0MX0.C_DFKOes3_B5u_Fezux9T3C-euNurPAhoZCae65bB9I
 
 
 ###
@@ -132,3 +131,21 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:3000/auth/delete/6640ff89fde7e78d38022184
+
+
+
+###
+
+PUT http://localhost:3000/post/update/66410a4c95bd6cf591717b3a
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQxMDZkMmZkMDU5OGNhMTJhNjc2OTYiLCJpYXQiOjE3MTU1Mzc2NDEsImV4cCI6MTcxNTU0MDY0MX0.C_DFKOes3_B5u_Fezux9T3C-euNurPAhoZCae65bB9I
+
+{
+    "message": "Test Gadol Meod",
+    "image": "stamTmuna2.jpg"
+}
+
+
+###
+
+DELETE http://localhost:3000/post/delete/66410b284d540916cdde314c

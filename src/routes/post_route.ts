@@ -21,4 +21,8 @@ router.put("/:id", postController.put.bind(postController));
 
 router.delete("/:id", postController.remove.bind(postController));
 
+router.put("/update/:id", postController.edit_post.bind(postController));
+
+router.delete("/delete/:id", postController.delete_post.bind(postController));
+
 export default router;
