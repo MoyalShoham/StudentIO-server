@@ -10,7 +10,7 @@ const edit_profile = async (req: Request, res: Response) => {
     const {full_name, profile_picture, gender, email, password, student } = req.body;
     const _id = req.params.id;
 
-    console.log("full_name" + full_name + " _id" + _id + " profile_picture" + profile_picture)
+    // console.log("full_name" + full_name + " _id" + _id + " profile_picture" + profile_picture)
     const newUser = await User.findByIdAndUpdate(_id, 
         {profile_picture: profile_picture, full_name: full_name, gender: gender, email: email, password: password, student: student})
     return res.status(200).send(newUser);
@@ -121,7 +121,8 @@ const login = async (req: Request, res: Response) => {
         await user.save();
         return res.status(200).send({
             accessToken: accessToken,
-            refreshToken: refreshToken
+            refreshToken: refreshToken,
+            _id: user._id
         });
     } catch (error) {
         console.log(error);
@@ -130,7 +131,9 @@ const login = async (req: Request, res: Response) => {
 }
 
 const logout = (req: Request, res: Response) => {
-    res.status(400).send("logout");
+    res.cookie('jwt', '', { maxAge: 1 });
+    res.redirect('/');
+    res.status(200).send("logged out");
 }
 
 const refresh = async (req: Request, res: Response) => {

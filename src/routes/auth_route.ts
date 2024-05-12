@@ -29,6 +29,13 @@ const router = express.Router();
 *       required:
 *         - email
 *         - password
+*         - full_name
+*         - _id
+*         - profile_picture
+*         - gender
+*         - tokens
+*         - posts
+*         - student
 *       properties:
 *         email:
 *           type: string
@@ -36,9 +43,40 @@ const router = express.Router();
 *         password:
 *           type: string
 *           description: The user password
+*         full_name:
+*           type: string
+*           description: The user full name
+*         _id:
+*           type: string
+*           description: The user id
+*         profile_picture:
+*           type: string
+*           description: The user profile picture
+*         gender:
+*           type: string
+*           description: The user gender
+*         tokens:
+*           type: string[]
+*           description: The user tokens (access & refresh)
+*         posts:
+*           type: string[]
+*           description: The user posts ids
+*         student:
+*          type: IStudent
+*          description: The student object
+* 
+*  
 *       example:
 *         email: 'bob@gmail.com'
 *         password: '123456'
+*         full_name: 'Bob Marly'
+*         profile_picture: 'http://localhost:3000/uploads/elyaaaa.png'
+*         gender: 'Male'
+*         student: {
+*           "faculty": "Software Engineering",
+*           "year": 3,
+*         }
+* 
 *     Tokens:
 *       type: object
 *       required:

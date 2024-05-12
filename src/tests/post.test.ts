@@ -4,19 +4,25 @@ import mongoose from "mongoose";
 import Post from "../models/post_model";
 import { Express } from "express";
 import User from "../models/user_model";
-import Student from "../models/student_model";
+// import Student from "../models/student_model";
 
 let app: Express;
 
 
 const testUser = {
-    email: "post@gmail.com",
-    password: "123456",
-    full_name: "post test",
+    email: 'test.auth@gmail.com',
+    password: '123456',
+    tokens: [],
+    student: {
+        faculty: "Software Engineering",
+        year: 2
+    },
+    profile_picture: "C:/Users/moyal/Desktop/elyaaaa.png",
+    full_name: "Elya Atia",
     gender: "Male",
-    profile_picture: "test/profile/image/path/1.jpg",
-    accessToken: null,
-    student: {faculty: "Software Engineering", year: 2}
+    _id: null,
+    posts: [],
+    accessToken: ""
 };
 
 
@@ -26,13 +32,13 @@ beforeAll(async () => {
     app = await appInit();
     console.log("beforeAll");
     await Post.deleteMany();
-    const userRef = await request(app).post("/auth/login").send(testUser);
-    await Student.deleteMany({ _id: userRef.body._id });
-
     await User.deleteMany({ email: testUser.email });
     await request(app).post("/auth/register").send(testUser);
     const res = await request(app).post("/auth/login").send(testUser);
     testUser.accessToken = res.body.accessToken;
+    const user = await User.findOne({ email: testUser.email })
+    testUser._id = user._id;
+
     // testUser.student = res.body.user.student;
 });
 
@@ -44,33 +50,34 @@ afterAll(async () => {
 
 
 describe("Post tests", () => {
-    test("Get /post - empty collection", async () => {
-        const res = await request(app).get("/post");
-        expect(res.statusCode).toBe(200);
-        const data = res.body;
-        expect(data).toEqual([]);
-    });
+   
 
     const post = {
+        owner: testUser._id,
         message: "test message",
-        owner: testUser.student,
         date: Date.now(),
         image: "test/image/path/1.jpg"
     }
 
     test("Post /post", async () => {
-        const res = await request(app).post("/post")
+        
+        const res = await request(app).post("/post/upload")
             .set('Authorization', 'Bearer ' + testUser.accessToken)
             .send(post);
         expect(res.statusCode).toBe(201);
     });
 
-    // test("Get /post - not empty collection", async () => {
-    //     const res = await request(app).get("/post");
-    //     expect(res.statusCode).toBe(200);
-    //     const data = res.body;
-    //     expect(data.length).toEqual(1);
-    // });
+    test("Get /my/post - my posts", async () => {
+        const res = await request(app).get("/post/my/posts").set('Authorization', 'Bearer ' + testUser.accessToken);
+        expect(res.statusCode).toBe(200);
+    });
+
+    test("Get /all/post - all posts", async () => {
+        const res = await request(app).get("/post/all/posts").set('Authorization', 'Bearer ' + testUser.accessToken);
+        expect(res.statusCode).toBe(200);
+    });
+
+    
 
     // test("Get /post/:_sid", async () => {
     //     const res = await request(app).get("/post");

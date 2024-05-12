@@ -3,6 +3,7 @@ import appInit from "../App";
 import mongoose from "mongoose";
 import { Express } from "express";
 import User from "../models/user_model";
+// import supertest from "supertest";
 
 
 const user = {
@@ -15,9 +16,9 @@ const user = {
     },
     profile_picture: "C:/Users/moyal/Desktop/elyaaaa.png",
     full_name: "Elya Atia",
-    gender: "Male"
-
-
+    gender: "Male",
+    _id: null,
+    posts: []
 }
 
 let app: Express;
@@ -45,7 +46,11 @@ describe("Auth test", () => {
     test("Post /login", async () => {
         const res = await request(app).post("/auth/login").send(user);
         expect(res.statusCode).toBe(200);
-        console.log(res.body);
+        // console.log(res.body);
+        // console.log(res.body);
+        // const userRef = 
+        user._id = res.body._id;
+        console.log("user._id" + user._id);
 
         accessToken = res.body.accessToken;
         refreshToken = res.body.refreshToken;
@@ -141,6 +146,39 @@ describe("Auth test", () => {
         expect(res2.statusCode).not.toBe(200);
     });
 
+
+    // test edeit user
+    // using supertest
+    test("edit user", async () => {
+        console.log("edit user" + user._id);
+        return await request(app)
+            .put(`/auth/update/${user._id}`)
+            .send({
+                email: user.email,
+                password: user.password,
+                full_name: "Elya Atia updated",
+            })
+            .expect(200);
+    });
+
+      // test logout
+    //   test("logout", async () => {
+    //     await request(app)
+    //         .get("/auth/logout")
+    //         .set('Authorization', 'Bearer ' + refreshToken)
+    //         .expect(200);
+    // });
+
+    // test delete user
+
+    test("delete user", async () => {
+        return await request(app)
+            .delete(`/auth/delete/${user._id}`)
+            .expect(200);
+    });
+
+
+  
 
 
 });
