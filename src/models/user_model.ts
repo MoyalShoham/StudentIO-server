@@ -1,10 +1,16 @@
 import mongoose from "mongoose";
+import { IStudent } from "./student_model";
+
 
 export interface IUser {
     email: string;
     password: string;
     tokens: string[];
     _id?: string;
+    student: IStudent;
+    profile_picture?: string;
+
+
 }
 
 const userSchema = new mongoose.Schema<IUser>({
@@ -18,6 +24,14 @@ const userSchema = new mongoose.Schema<IUser>({
     },
     tokens: {
         type: [String]
+    },
+    student: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+    },
+    profile_picture: {
+        type: String,
+        default: 'null'
     }
 });
 

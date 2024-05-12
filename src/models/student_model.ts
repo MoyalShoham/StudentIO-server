@@ -5,9 +5,7 @@ import mongoose from "mongoose";
 export interface IStudent {
   name: string;
   faculty: string;
-  _uid?: string;
   year: number;
-  profilePic?: string;
   gender?: string;
   posts?: string[];
 }
@@ -24,10 +22,6 @@ const studentSchema = new mongoose.Schema<IStudent>({
   year: {
     type: Number,
     required: true,
-  },
-  profilePic: {
-    type: String,
-    default: null,
   },
   gender: {
     type: String,

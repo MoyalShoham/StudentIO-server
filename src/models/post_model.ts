@@ -1,11 +1,12 @@
 import mongoose from "mongoose";
+import { IStudent } from "./student_model";
 
 export interface IPost {
     message: string;
-    owner: string;
+    owner: IStudent;
     date?: Date;
     _pid?: string;
-    image?: File;
+    image?: string;
 }
 
 const postSchema = new mongoose.Schema<IPost>({
@@ -14,7 +15,7 @@ const postSchema = new mongoose.Schema<IPost>({
         required: true,
     },
     owner: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
     },
     date: {
