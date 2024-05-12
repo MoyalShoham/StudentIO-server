@@ -38,10 +38,10 @@ class BaseController<ModelType> {
     }
 
     async post(req: Request, res: Response) {
-        console.log("student post ");
+        console.log("item post ");
         try {
-            const student = await this.itemModel.create(req.body);
-            res.status(201).send(student);
+            const item = await this.itemModel.create(req.body);
+            res.status(201).send(item);
         } catch (error) {
             console.log(error);
             res.status(400).send(error.message);

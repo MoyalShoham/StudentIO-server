@@ -6,7 +6,6 @@ import mongoose from "mongoose";
 export interface IStudent {
   faculty: string;
   year: number;
-  posts: string[];
 }
 
 const studentSchema = new mongoose.Schema<IStudent>({
@@ -20,11 +19,7 @@ const studentSchema = new mongoose.Schema<IStudent>({
     required: true,
   },
 
-  posts: {
-    type: [String],
-    required: false,
-    default: [],
-  },
+
 
 });
 

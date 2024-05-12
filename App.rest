@@ -64,3 +64,21 @@ Content-Type: application/json
     "email": "moyal.shoham@gmail.com",
     "password": "123456"
 }
+
+
+###
+
+POST http://localhost:3000/post/upload
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQwYWZmMTNmNTIxZDZjM2Q1NjkyMTIiLCJpYXQiOjE3MTU1MjE3MjYsImV4cCI6MTcxNTUyNDcyNn0.C_bYVu_YkyHyTmL1ZFJ3gRKLSq6t5FJn1nKCBaeLSfU
+
+{
+    "message": "Paam Shnia",
+    "image": "stamTmuna.jpg"
+}
+
+
+###
+
+GET http://localhost:3000/post/myposts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQwYWZmMTNmNTIxZDZjM2Q1NjkyMTIiLCJpYXQiOjE3MTU1MjI3NDAsImV4cCI6MTcxNTUyNTc0MH0.qFeH1-DJ8oDGnQTYdQmOyLYW34r7XlHljZro-hFU-Sw

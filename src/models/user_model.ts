@@ -11,6 +11,7 @@ export interface IUser {
     profile_picture?: string;
     full_name?: string;
     gender: string;
+    posts: string[];
 
 }
 
@@ -40,7 +41,12 @@ const userSchema = new mongoose.Schema<IUser>({
     gender: {
         type: String,
         required: true
-    }
+    },
+    posts: {
+        type: [String],
+        required: true,
+        default: [],
+      },
 });
 
 export default mongoose.model<IUser>("User", userSchema);

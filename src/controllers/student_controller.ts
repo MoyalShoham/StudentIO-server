@@ -7,6 +7,8 @@ class StudentController extends BaseController<IStudent> {
     super(Student);
   }
 
+  
+
 }
 
 export default new StudentController();

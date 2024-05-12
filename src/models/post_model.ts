@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
-import { IStudent } from "./student_model";
+// import { IStudent } from "./student_model";
 
 export interface IPost {
     message: string;
-    owner: IStudent;
+    owner: string;
     date?: Date;
     _pid?: string;
     image?: string;
@@ -15,7 +15,7 @@ const postSchema = new mongoose.Schema<IPost>({
         required: true,
     },
     owner: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         required: true,
     },
     date: {

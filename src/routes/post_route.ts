@@ -9,7 +9,9 @@ router.get("/", postController.get.bind(postController));
 
 router.get("/:id", postController.getById.bind(postController));
 
-router.post("/", authMiddleware, postController.post.bind(postController));
+router.post("/upload", authMiddleware, postController.post.bind(postController));
+
+router.get("/my/posts", authMiddleware, postController.get_posts.bind(postController));
 
 router.put("/:id", postController.put.bind(postController));
 
