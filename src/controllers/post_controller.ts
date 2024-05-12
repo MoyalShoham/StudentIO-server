@@ -31,14 +31,25 @@ class PostController extends BaseController<IPost> {
     }
     // get my posts!
     //the header should contain the token
-    async get_posts(req: Request, res: Response) {
+    async get_my_posts(req: Request, res: Response) {
         console.log("get posts");
         const user = req.body.user;
         const posts = await Post.find({owner: user._id});
         res.status(200).send(posts);
     }
 
-    // async get_posts_by_user(req: Request, res: Response) {}
+    async get_all_posts(req: Request, res: Response) {
+        const user = req.body.user;
+        const posts = await Post.find();
+        const result = [];
+        for (const post of posts) {
+            if (post.owner != user._id) {
+                result.push(post);
+            }
+        }
+        res.status(200).send(result);
+
+    }
 
 }
 
