@@ -6,9 +6,17 @@ import User from "../models/user_model";
 
 
 const user = {
-    email: "teszt@gmail.com",
-    password: "123456",
-    accessToken: null
+    email: 'test.auth@gmail.com',
+    password: '123456',
+    tokens: [],
+    student: {
+        faculty: "Software Engineering",
+        year: 2
+    },
+    profile_picture: "C:/Users/moyal/Desktop/elyaaaa.png",
+    full_name: "Elya Atia",
+    gender: "Male"
+
 
 }
 
@@ -53,7 +61,7 @@ describe("Auth test", () => {
     });
 
 
-    const timout = (ms: number) => {
+    const time_out = (ms: number) => {
         return new Promise((resolve) => {
             setTimeout(resolve, ms);
         });
@@ -86,9 +94,11 @@ describe("Auth test", () => {
     });
 
 
+
+
     test("refresh token after expiration", async () => {
         //sleep 6 sec check if token is expired
-        await timout(6000);
+        await time_out(6000);
         const res = await request(app).get("/student")
             .set('Authorization', 'Bearer ' + accessToken);
         expect(res.statusCode).not.toBe(200);
@@ -108,6 +118,8 @@ describe("Auth test", () => {
         expect(res3.statusCode).toBe(200);
     });
 
+
+    
     test("refresh token violation", async () => {
         const res = await request(app).get("/auth/refresh")
             .set('Authorization', 'Bearer ' + refreshToken)

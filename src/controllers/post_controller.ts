@@ -8,7 +8,7 @@ class PostController extends BaseController<IPost> {
     }
 
     async post(req: Request, res: Response) {
-        req.body.owner = req.body.user._id;
+        req.body.owner = req.body.user.student;
         super.post(req, res);
     }
 }
