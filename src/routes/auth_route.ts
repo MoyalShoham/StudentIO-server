@@ -134,4 +134,10 @@ router.get("/logout", authController.logout);
 *               $ref: '#/components/schemas/Tokens'
 */
 router.get("/refresh", authController.refresh);
+
+
+router.put("/update/:id", authController.edit_profile);
+
+router.delete("/delete/:id", authController.delete_profile);
+
 export default router;

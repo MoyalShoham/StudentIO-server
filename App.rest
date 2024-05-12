@@ -35,6 +35,29 @@ DELETE http://localhost:3000/student
 
 GET http://localhost:3000/post
 
+
+###
+
+
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+    "email": "test@gmail.com",
+    "password": "123456",
+    "full_name": "Shoham Moyal",
+    "profile_picture": "null",
+    "gender": "Male",
+    "student": {
+        "year": 4,
+        "faculty": "Software Engineering",
+        "posts": []
+        }
+}
+
+
+
+// main user 
 ###
 
 
@@ -61,7 +84,7 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "email": "moyal.shoham@gmail.com",
+    "email": "test@gmail.com",
     "password": "123456"
 }
 
@@ -80,5 +103,32 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQwYWZmM
 
 ###
 
-GET http://localhost:3000/post/myposts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQwYWZmMTNmNTIxZDZjM2Q1NjkyMTIiLCJpYXQiOjE3MTU1MjI3NDAsImV4cCI6MTcxNTUyNTc0MH0.qFeH1-DJ8oDGnQTYdQmOyLYW34r7XlHljZro-hFU-Sw
+GET http://localhost:3000/post/my/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQwZDU2NTE0YWM3NmU0MjdmMjA1N2IiLCJpYXQiOjE3MTU1MjQ5ODcsImV4cCI6MTcxNTUyNzk4N30.2QG6hwLApj3o7f2cooj6biMJ1ZU8HKF0wuQebb6bjHA
+
+###
+
+GET http://localhost:3000/post/all/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQwZDU2NTE0YWM3NmU0MjdmMjA1N2IiLCJpYXQiOjE3MTU1MjQ5ODcsImV4cCI6MTcxNTUyNzk4N30.2QG6hwLApj3o7f2cooj6biMJ1ZU8HKF0wuQebb6bjHA
+
+
+###
+
+PUT http://localhost:3000/auth/update/6640ff89fde7e78d38022184
+Content-Type: application/json
+
+{
+    "email": "moyal.shoham@gmail.com",
+    "password": "123456",
+    "full_name": "Shoham Moyal",
+    "profile_picture": "Shoham.jpg",
+    "gender": "Male",
+    "posts": [],
+    "student": "6640ff89fde7e78d38022182"
+
+}
+
+
+###
+
+DELETE http://localhost:3000/auth/delete/6640ff89fde7e78d38022184

@@ -9,7 +9,7 @@ export interface IUser {
     _id?: string;
     student?: IStudent;
     profile_picture?: string;
-    full_name?: string;
+    full_name: string;
     gender: string;
     posts: string[];
 
@@ -32,7 +32,8 @@ const userSchema = new mongoose.Schema<IUser>({
     },
     profile_picture: {
         type: String,
-        default: 'null'
+        default: 'null',
+        required: true
     },
     full_name: {
         type: String,

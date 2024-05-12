@@ -40,7 +40,7 @@ describe("Auth test", () => {
     test("Post /register", async () => {
         const res = await request(app).post("/auth/register").send(user);
         expect(res.statusCode).toBe(200);
-    });
+});
 
     test("Post /login", async () => {
         const res = await request(app).post("/auth/login").send(user);
@@ -94,8 +94,6 @@ describe("Auth test", () => {
     });
 
 
-
-
     test("refresh token after expiration", async () => {
         //sleep 6 sec check if token is expired
         await time_out(6000);
@@ -117,8 +115,6 @@ describe("Auth test", () => {
             .set('Authorization', 'Bearer ' + accessToken);
         expect(res3.statusCode).toBe(200);
     });
-
-
     
     test("refresh token violation", async () => {
         const res = await request(app).get("/auth/refresh")
@@ -144,6 +140,7 @@ describe("Auth test", () => {
             .send();
         expect(res2.statusCode).not.toBe(200);
     });
+
 
 
 });

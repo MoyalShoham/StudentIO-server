@@ -4,6 +4,28 @@ import Student from "../models/student_model";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+
+
+const edit_profile = async (req: Request, res: Response) => {
+    const {full_name, profile_picture, gender, email, password, student } = req.body;
+    const _id = req.params.id;
+
+    console.log("full_name" + full_name + " _id" + _id + " profile_picture" + profile_picture)
+    const newUser = await User.findByIdAndUpdate(_id, 
+        {profile_picture: profile_picture, full_name: full_name, gender: gender, email: email, password: password, student: student})
+    return res.status(200).send(newUser);
+};
+
+const delete_profile = async (req: Request, res: Response) => {
+    const _id = req.params.id;
+    const userRef = await User.findById(_id);
+    try{
+        await Student.findByIdAndDelete(userRef.student);
+    }catch(error){ res.status(400).send(error.message); }
+    const newUser = await User.findByIdAndDelete(_id);
+    return res.status(200).send(newUser);
+}
+
 const register = async (req: Request, res: Response) => {
     console.log(req.body);
     const email = req.body.email;
@@ -154,11 +176,15 @@ const refresh = async (req: Request, res: Response) => {
             return res.status(400).send(error.message);
         }
     });
+
 }
+
 
 export default {
     register,
     login,
     logout,
-    refresh
+    refresh,
+    edit_profile,
+    delete_profile
 }

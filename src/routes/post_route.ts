@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 import postController from "../controllers/post_controller";
 import authMiddleware from "../common/auth_middleware";
-
+ 
 
 
 router.get("/", postController.get.bind(postController));
@@ -14,6 +14,8 @@ router.post("/upload", authMiddleware, postController.post.bind(postController))
 router.get("/my/posts", authMiddleware, postController.get_my_posts.bind(postController));
 
 router.get("/all/posts", authMiddleware, postController.get_all_posts.bind(postController));
+
+router.post("/upload-file", postController.upload.single('file'), postController.upload_file.bind(postController));
 
 router.put("/:id", postController.put.bind(postController));
 
