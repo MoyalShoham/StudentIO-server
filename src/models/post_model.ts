@@ -6,7 +6,7 @@ export interface IPost {
     owner: string;
     date?: Date;
     _pid?: string;
-    image?: string;
+    image: string;
 }
 
 const postSchema = new mongoose.Schema<IPost>({
@@ -22,6 +22,10 @@ const postSchema = new mongoose.Schema<IPost>({
         type: Date,
         default: Date.now
     },
+    image: {
+        type: String,
+        default: null,
+    }
 
     
 

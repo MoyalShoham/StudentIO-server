@@ -77,17 +77,19 @@ describe("Post tests", () => {
         expect(res.statusCode).toBe(200);
     });
 
-    
+    test("Put /posts/:_pid", async () => {
+        const res = await request(app).get("/post/my/posts").set('Authorization', 'Bearer ' + testUser.accessToken);
+        expect(res.statusCode).toBe(200);
+        const data = res.body;
+        const post = data[0];
+        const res2 = await request(app).put("/post/" + post._id)
+            .set('Authorization', 'Bearer ' + testUser.accessToken)
+            .send({ message: "updated message"});
+        expect(res2.statusCode).toBe(200);   
+    });
 
-    // test("Get /post/:_sid", async () => {
-    //     const res = await request(app).get("/post");
-    //     expect(res.statusCode).toBe(200);
-    //     const data = res.body;
-    //     const post = data[0];
-    //     const res2 = await request(app).get("/post/" + post._pid);
-    //     expect(res2.statusCode).toBe(200);
-    //     expect(res2.body.title).toEqual(post.title);
-    // });
+  
+
 
     // test("Delete /post/:_pid", async () => {
     //     const res = await request(app).get("/post");

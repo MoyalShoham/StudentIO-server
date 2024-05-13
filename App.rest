@@ -93,7 +93,7 @@ Content-Type: application/json
 
 POST http://localhost:3000/post/upload
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQxMDZkMmZkMDU5OGNhMTJhNjc2OTYiLCJpYXQiOjE3MTU1Mzc2NDEsImV4cCI6MTcxNTU0MDY0MX0.C_DFKOes3_B5u_Fezux9T3C-euNurPAhoZCae65bB9I
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQyMGY1NDM4ODBjMDkxM2JlOGNkOGIiLCJpYXQiOjE3MTU2MDUzMzUsImV4cCI6MTcxNTYwODMzNX0.FGDIFwkVh8YVI8uJ3H0AvmhGqz0X8pYD2NoJdoKCOzo
 
 {
     "message": "Test Gadol",
@@ -104,11 +104,16 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQxMDZkM
 ###
 
 GET http://localhost:3000/post/my/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQxMDZkMmZkMDU5OGNhMTJhNjc2OTYiLCJpYXQiOjE3MTU1Mzc2NDEsImV4cCI6MTcxNTU0MDY0MX0.C_DFKOes3_B5u_Fezux9T3C-euNurPAhoZCae65bB9I
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQyMGY1NDM4ODBjMDkxM2JlOGNkOGIiLCJpYXQiOjE3MTU2MDUzMzUsImV4cCI6MTcxNTYwODMzNX0.FGDIFwkVh8YVI8uJ3H0AvmhGqz0X8pYD2NoJdoKCOzo
+
+
+
 ###
 
+
+
 GET http://localhost:3000/post/all/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQxMDZkMmZkMDU5OGNhMTJhNjc2OTYiLCJpYXQiOjE3MTU1Mzc2NDEsImV4cCI6MTcxNTU0MDY0MX0.C_DFKOes3_B5u_Fezux9T3C-euNurPAhoZCae65bB9I
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQyMGY1NDM4ODBjMDkxM2JlOGNkOGIiLCJpYXQiOjE3MTU2MDUzMzUsImV4cCI6MTcxNTYwODMzNX0.FGDIFwkVh8YVI8uJ3H0AvmhGqz0X8pYD2NoJdoKCOzo
 
 
 ###
@@ -136,9 +141,9 @@ DELETE http://localhost:3000/auth/delete/6640ff89fde7e78d38022184
 
 ###
 
-PUT http://localhost:3000/post/update/66410a4c95bd6cf591717b3a
+PUT http://localhost:3000/post/66420f7d3880c0913be8cd90
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQxMDZkMmZkMDU5OGNhMTJhNjc2OTYiLCJpYXQiOjE3MTU1Mzc2NDEsImV4cCI6MTcxNTU0MDY0MX0.C_DFKOes3_B5u_Fezux9T3C-euNurPAhoZCae65bB9I
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQyMGY1NDM4ODBjMDkxM2JlOGNkOGIiLCJpYXQiOjE3MTU2MDUzMzUsImV4cCI6MTcxNTYwODMzNX0.FGDIFwkVh8YVI8uJ3H0AvmhGqz0X8pYD2NoJdoKCOzo
 
 {
     "message": "Test Gadol Meod",

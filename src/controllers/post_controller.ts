@@ -41,8 +41,11 @@ class PostController extends BaseController<IPost> {
 
     async edit_post(req: Request, res: Response) {
         try {
-            console.log("update post");
-            const post = await Post.findByIdAndUpdate(req.params.id, req.body);
+            console.log("before: " + req.params.id);
+            const {message, owner, data, image} = req.body;
+            
+            const post = await Post.findByIdAndUpdate(req.params.id, {message, owner, data, image}, {new: true});
+            console.log("update post" + req.body.message);
             res.status(200).send(post);
         } catch(error) {
             res.status(400).send(error.message);
