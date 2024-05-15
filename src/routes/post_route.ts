@@ -95,8 +95,6 @@ router.get("/my/posts", authMiddleware, postController.get_my_posts.bind(postCon
 
 router.get("/all/posts", authMiddleware, postController.get_all_posts.bind(postController));
 
-router.post("/upload-file", postController.upload.single('file'), postController.upload_file.bind(postController));
-
 router.delete("/:id", postController.remove.bind(postController));
 
 router.put("/:id", postController.edit_post.bind(postController));

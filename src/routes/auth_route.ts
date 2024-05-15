@@ -1,5 +1,6 @@
 import express from "express";
 import authController from "../controllers/auth_controller";
+import authMiddleware from "../common/auth_middleware";
 // import authMiddleware from "../common/auth_middleware";
 const router = express.Router();
 
@@ -153,7 +154,7 @@ router.post("/login", authController.login);
 *       200:
 *         description: logout completed successfully
 */
-router.get("/logout/:id", authController.logout);
+router.get("/logout", authMiddleware, authController.logout);
 
 /**
 * @swagger
@@ -175,8 +176,8 @@ router.get("/logout/:id", authController.logout);
 router.get("/refresh", authController.refresh);
 
 
-router.put("/update/:id", authController.edit_profile);
+router.put("/update", authMiddleware, authController.edit_profile);
 
-router.delete("/delete/:id", authController.delete_profile);
+router.delete("/delete", authMiddleware, authController.delete_profile);
 
 export default router;

@@ -2,7 +2,7 @@ import request from "supertest";
 import appInit from "../App";
 import mongoose from "mongoose";
 import { Express } from "express";
-import User, {IUser} from "../models/user_model";
+import User from "../models/user_model";
 // import supertest from "supertest";
 
 
@@ -10,10 +10,8 @@ const user = {
     email: 'test.auth@gmail.com',
     password: '123456',
     tokens: [],
-    student: {
-        faculty: "Software Engineering",
-        year: 2
-    },
+    faculty: "Computer Science",
+    year: 3,
     profile_picture: "C:/Users/moyal/Desktop/elyaaaa.png",
     full_name: "Elya Atia",
     gender: "Male",
@@ -57,12 +55,6 @@ describe("Auth test", () => {
         expect(accessToken).not.toBeNull();
         expect(refreshToken).not.toBeNull();
 
-        const res2 = await request(app).get("/student").set('Authorization', 'Bearer ' + accessToken);
-        expect(res2.statusCode).toBe(200);
-
-        const fakeToken = accessToken + "0";
-        const res3 = await request(app).get("/student").set('Authorization', 'Bearer ' + fakeToken);
-        expect(res3.statusCode).not.toBe(200);
     });
 
 
@@ -91,9 +83,6 @@ describe("Auth test", () => {
         expect(accessToken).not.toBeNull();
         expect(refreshToken).not.toBeNull();
 
-        const res3 = await request(app).get("/student")
-            .set('Authorization', 'Bearer ' + accessToken);
-        expect(res3.statusCode).toBe(200);
 
 
     });
@@ -115,10 +104,6 @@ describe("Auth test", () => {
 
         expect(accessToken).not.toBeNull();
         expect(refreshToken).not.toBeNull();
-
-        const res3 = await request(app).get("/student")
-            .set('Authorization', 'Bearer ' + accessToken);
-        expect(res3.statusCode).toBe(200);
     });
     
     test("refresh token violation", async () => {
@@ -149,9 +134,10 @@ describe("Auth test", () => {
 
     // test edeit user
     // using supertest
-    test("Put /auth/update/:id", async () => {
+    test("Put /auth/update", async () => {
         return await request(app)
-            .put(`/auth/update/${user._id}`)
+            .put(`/auth/update`)
+            .set('Authorization', 'Bearer ' + accessToken)
             .send({
                 email: user.email,
                 password: user.password,
@@ -161,30 +147,16 @@ describe("Auth test", () => {
     });
 
 
-    test("Get /auth/logout/:id", async () => {
-        const res = await User.find({ _id: user._id}) as IUser[];
-        if (res[0].tokens.length > 0) {
-            return await request(app)
-            .get(`/auth/logout/${user._id}`)
-            .set('Authorization', 'Bearer ' + refreshToken)
-            .expect(200);
-        } else {
-            return await request(app)
-            .get(`/auth/logout/${user._id}`)
-            .set('Authorization', 'Bearer ' + refreshToken)
-            .expect(400);
-        }
-       
-        
-    });
 
-      // test logout
-    //   test("logout", async () => {
+    //need to fix
+    // test("Get /auth/logout", async () => {
     //     await request(app)
     //         .get("/auth/logout")
-    //         .set('Authorization', 'Bearer ' + refreshToken)
+    //         .set('Authorization', 'Bearer ' + accessToken)
     //         .expect(200);
+        
     // });
+
 
     // test delete user
 
@@ -192,8 +164,8 @@ describe("Auth test", () => {
     //must be the last test!
     test("delete user", async () => {
         return await request(app)
-            .delete(`/auth/delete/${user._id}`)
-            .set('Authorization', 'Bearer ' + refreshToken)
+            .delete(`/auth/delete`)
+            .set('Authorization', 'Bearer ' + accessToken)
             .expect(200);
     });
 

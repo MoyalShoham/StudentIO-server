@@ -13,10 +13,8 @@ const testUser = {
     email: 'test.auth@gmail.com',
     password: '123456',
     tokens: [],
-    student: {
-        faculty: "Software Engineering",
-        year: 2
-    },
+    faculty: "Software Engineering",
+    year: 2,
     profile_picture: "C:/Users/moyal/Desktop/elyaaaa.png",
     full_name: "Elya Atia",
     gender: "Male",

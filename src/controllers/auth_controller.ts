@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import User from "../models/user_model";
-import Student from "../models/student_model";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -8,31 +7,26 @@ import jwt from "jsonwebtoken";
 
 const edit_profile = async (req: Request, res: Response) => {
     const {full_name, profile_picture, gender, email, password, student } = req.body;
-    const _id = req.params.id;
-    // console.log("full_name" + full_name + " _id" + _id + " profile_picture" + profile_picture)
+    const _id = req.body.user;
     const newUser = await User.findByIdAndUpdate(_id, 
         {profile_picture: profile_picture, full_name: full_name, gender: gender, email: email, password: password, student: student})
     return res.status(200).send(newUser);
 };
 
 const delete_profile = async (req: Request, res: Response) => {
-    const _id = req.params.id;
-    const userRef = await User.findById(_id);
-    try{
-        await Student.findByIdAndDelete(userRef.student);
-    }catch(error){ res.status(400).send(error.message); }
+    const _id = req.body.user;
     const newUser = await User.findByIdAndDelete(_id);
     return res.status(200).send(newUser);
 }
 
 const register = async (req: Request, res: Response) => {
-    console.log(req.body);
     const email = req.body.email;
     const password = req.body.password;
     const full_name = req.body.full_name;
     const profile_picture = req.body.profile_picture;
     const gender = req.body.gender;
-    const { faculty, year } = req.body.student
+    const faculty = req.body.faculty;
+    const year = req.body.year;
 
 
     if (email == null || password == null) {
@@ -47,19 +41,14 @@ const register = async (req: Request, res: Response) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        const newStudent =  await Student.create({
-            faculty: faculty,
-            year: year,
-        });
-
-
         const newUser = await User.create({
             email: email,
             password: hashedPassword,
             profile_picture: profile_picture,
             full_name: full_name,
             gender: gender,
-            student: newStudent
+            faculty: faculty,
+            year: year
         });
 
         return res.status(200).send(newUser);
@@ -121,7 +110,6 @@ const login = async (req: Request, res: Response) => {
         return res.status(200).send({
             accessToken: accessToken,
             refreshToken: refreshToken,
-            _id: user._id
         });
     } catch (error) {
         console.log(error);
@@ -131,9 +119,9 @@ const login = async (req: Request, res: Response) => {
 
 const logout = async (req: Request, res: Response) => {
     
-    const user = await User.findById(req.params.id);
+    const user = await User.findById(req.body.user);
     if (user.tokens.length > 0){
-        await User.findByIdAndUpdate(req.params.id, {tokens: []});
+        await User.findByIdAndUpdate(req.body.user, {tokens: []});
         return res.status(200).send("logged out");
     } else {
         console.log("you already logged out");
