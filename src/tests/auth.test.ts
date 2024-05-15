@@ -2,7 +2,7 @@ import request from "supertest";
 import appInit from "../App";
 import mongoose from "mongoose";
 import { Express } from "express";
-import User from "../models/user_model";
+import User, {IUser} from "../models/user_model";
 // import supertest from "supertest";
 
 
@@ -149,8 +149,7 @@ describe("Auth test", () => {
 
     // test edeit user
     // using supertest
-    test("edit user", async () => {
-        console.log("edit user" + user._id);
+    test("Put /auth/update/:id", async () => {
         return await request(app)
             .put(`/auth/update/${user._id}`)
             .send({
@@ -159,6 +158,24 @@ describe("Auth test", () => {
                 full_name: "Elya Atia updated",
             })
             .expect(200);
+    });
+
+
+    test("Get /auth/logout/:id", async () => {
+        const res = await User.find({ _id: user._id}) as IUser[];
+        if (res[0].tokens.length > 0) {
+            return await request(app)
+            .get(`/auth/logout/${user._id}`)
+            .set('Authorization', 'Bearer ' + refreshToken)
+            .expect(200);
+        } else {
+            return await request(app)
+            .get(`/auth/logout/${user._id}`)
+            .set('Authorization', 'Bearer ' + refreshToken)
+            .expect(400);
+        }
+       
+        
     });
 
       // test logout
@@ -171,9 +188,12 @@ describe("Auth test", () => {
 
     // test delete user
 
+
+    //must be the last test!
     test("delete user", async () => {
         return await request(app)
             .delete(`/auth/delete/${user._id}`)
+            .set('Authorization', 'Bearer ' + refreshToken)
             .expect(200);
     });
 

@@ -9,7 +9,6 @@ import jwt from "jsonwebtoken";
 const edit_profile = async (req: Request, res: Response) => {
     const {full_name, profile_picture, gender, email, password, student } = req.body;
     const _id = req.params.id;
-
     // console.log("full_name" + full_name + " _id" + _id + " profile_picture" + profile_picture)
     const newUser = await User.findByIdAndUpdate(_id, 
         {profile_picture: profile_picture, full_name: full_name, gender: gender, email: email, password: password, student: student})
@@ -130,10 +129,18 @@ const login = async (req: Request, res: Response) => {
     }
 }
 
-const logout = (req: Request, res: Response) => {
-    res.cookie('jwt', '', { maxAge: 1 });
-    res.redirect('/');
-    res.status(200).send("logged out");
+const logout = async (req: Request, res: Response) => {
+    
+    const user = await User.findById(req.params.id);
+    if (user.tokens.length > 0){
+        await User.findByIdAndUpdate(req.params.id, {tokens: []});
+        return res.status(200).send("logged out");
+    } else {
+        console.log("you already logged out");
+        return res.status(400).send("you already logged out");
+    }
+
+    
 }
 
 const refresh = async (req: Request, res: Response) => {
