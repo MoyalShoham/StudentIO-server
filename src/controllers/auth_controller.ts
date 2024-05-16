@@ -181,11 +181,12 @@ const refresh = async (req: Request, res: Response) => {
 const getUsers = async (req: Request, res: Response) => {
     console.log("getUsers");
     const users = await User.find();
-    return res.status(200).send(users);
+    const otherUsers = users.filter(user => user._id != req.body.user);
+    return res.status(200).send(otherUsers);
 }
 
 const getUserById = async (req: Request, res: Response) => {
-    const user = await User.findById(req.params.id);
+    const user = await User.findById(req.body.user);
     return res.status(200).send(user);
 }
 
