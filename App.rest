@@ -65,16 +65,15 @@ POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
-    "email": "moyal.shoham@gmail.com",
+    "email": "moyal@gmail.com",
     "password": "123456",
     "full_name": "Shoham Moyal",
     "profile_picture": "null",
     "gender": "Male",
-    "student": {
-        "year": 4,
-        "faculty": "Software Engineering",
-        "posts": []
-        }
+    "year": 4,
+    "faculty": "Software Engineering",
+    "posts": []
+
 }
 
 
@@ -84,8 +83,18 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "email": "moyal.shoham@gmail.com",
+    "email": "moyal@gmail.com",
     "password": "123456"
+}
+
+###
+
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "S@t.com",
+    "password": "12"
 }
 
 
@@ -93,19 +102,18 @@ Content-Type: application/json
 
 POST http://localhost:3000/post/upload
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQyMGY1NDM4ODBjMDkxM2JlOGNkOGIiLCJpYXQiOjE3MTU2MDUzMzUsImV4cCI6MTcxNTYwODMzNX0.FGDIFwkVh8YVI8uJ3H0AvmhGqz0X8pYD2NoJdoKCOzo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQ2MTk2YzkxMWQ4N2VlNWZlZWEwMjMiLCJpYXQiOjE3MTU4NzAwNzYsImV4cCI6MTcxNTg3MzA3Nn0.A8swsyJZUuY9mQ0mHz-0fCke_8XwrvQYZPM_3t8v92Q
 
 {
-    "message": "Test Gadol",
-    "image": "stamTmuna.jpg"
+    "message": "Te111st Gadol113",
+    "image": "stamTm222una.jpg"
 }
 
 
 ###
 
 GET http://localhost:3000/post/my/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQyMGY1NDM4ODBjMDkxM2JlOGNkOGIiLCJpYXQiOjE3MTU2MDUzMzUsImV4cCI6MTcxNTYwODMzNX0.FGDIFwkVh8YVI8uJ3H0AvmhGqz0X8pYD2NoJdoKCOzo
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQ2MTk2YzkxMWQ4N2VlNWZlZWEwMjMiLCJpYXQiOjE3MTU4NzAwNzYsImV4cCI6MTcxNTg3MzA3Nn0.A8swsyJZUuY9mQ0mHz-0fCke_8XwrvQYZPM_3t8v92Q
 
 
 ###
@@ -113,7 +121,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQyMGY1N
 
 
 GET http://localhost:3000/post/all/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQyMGY1NDM4ODBjMDkxM2JlOGNkOGIiLCJpYXQiOjE3MTU2MDUzMzUsImV4cCI6MTcxNTYwODMzNX0.FGDIFwkVh8YVI8uJ3H0AvmhGqz0X8pYD2NoJdoKCOzo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQ2MTk2YzkxMWQ4N2VlNWZlZWEwMjMiLCJpYXQiOjE3MTU4NzAwNzYsImV4cCI6MTcxNTg3MzA3Nn0.A8swsyJZUuY9mQ0mHz-0fCke_8XwrvQYZPM_3t8v92Q
 
 
 ###
@@ -161,3 +169,5 @@ DELETE http://localhost:3000/post/delete/66410b284d540916cdde314c
 
 GET http://localhost:3000/auth/logout/66420f543880c0913be8cd8b
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQyMGY1NDM4ODBjMDkxM2JlOGNkOGIiLCJpYXQiOjE3MTU2MTIzNjUsImV4cCI6MTcxNTYxNTM2NX0.19c0z-z4jVlJ_JnqNwOhvq3NEWd-A47PVYzCqoBv0f8
+
+
