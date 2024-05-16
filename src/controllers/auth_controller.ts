@@ -28,6 +28,7 @@ const register = async (req: Request, res: Response) => {
     const faculty = req.body.faculty;
     const year = req.body.year;
 
+    console.log("register");
 
     if (email == null || password == null) {
         return res.status(400).send("missing email or password");
@@ -177,6 +178,18 @@ const refresh = async (req: Request, res: Response) => {
 
 }
 
+const getUsers = async (req: Request, res: Response) => {
+    console.log("getUsers");
+    const users = await User.find();
+    return res.status(200).send(users);
+}
+
+const getUserById = async (req: Request, res: Response) => {
+    const user = await User.findById(req.params.id);
+    return res.status(200).send(user);
+}
+
+
 
 export default {
     register,
@@ -184,5 +197,7 @@ export default {
     logout,
     refresh,
     edit_profile,
-    delete_profile
+    delete_profile,
+    getUsers,
+    getUserById
 }
