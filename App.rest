@@ -171,3 +171,8 @@ GET http://localhost:3000/auth/logout/66420f543880c0913be8cd8b
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQyMGY1NDM4ODBjMDkxM2JlOGNkOGIiLCJpYXQiOjE3MTU2MTIzNjUsImV4cCI6MTcxNTYxNTM2NX0.19c0z-z4jVlJ_JnqNwOhvq3NEWd-A47PVYzCqoBv0f8
 
 
+
+
+###
+
+GET http://localhost:3000/auth/user/6646196c911d87ee5feea023
