@@ -16,12 +16,14 @@ const initApp = () => {
     mongoose.connect(process.env.DATABASE_URL).then(() => {
       app.use(bodyParser.json());
       app.use(bodyParser.urlencoded({ extended: true }));
-      app.use('/public', express.static("public"));
-      app.use('/public', express.static("uploads"));
+
 
       app.use("/post", postRoute);
       app.use("/auth", authRoute);
       app.use("/files", fileRoute);
+
+      app.use('/public', express.static("public"));
+      app.use('/uploads', express.static("uploads"));
 
       resolve(app);
     })

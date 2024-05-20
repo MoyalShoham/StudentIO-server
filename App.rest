@@ -68,7 +68,7 @@ Content-Type: application/json
     "email": "moyal@gmail.com",
     "password": "123456",
     "full_name": "Shoham Moyal",
-    "profile_picture": "null",
+    "profile_picture": "none",
     "gender": "Male",
     "year": 4,
     "faculty": "Software Engineering",
@@ -102,10 +102,10 @@ Content-Type: application/json
 
 POST http://localhost:3000/post/upload
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQ2MTk2YzkxMWQ4N2VlNWZlZWEwMjMiLCJpYXQiOjE3MTU4NzAwNzYsImV4cCI6MTcxNTg3MzA3Nn0.A8swsyJZUuY9mQ0mHz-0fCke_8XwrvQYZPM_3t8v92Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjRiNmU3NTUwNDE1ODQwZGZlMmQ2ZjMiLCJpYXQiOjE3MTYyMTk1NzUsImV4cCI6MTcxNjIyMjU3NX0.inPsaDbHiHil6NA0v4gtzqhtMC154bw0KkTYV_cfbBM
 
 {
-    "message": "Te111st Gadol113",
+    "message": "Plizzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz Gadol113",
     "image": "stamTm222una.jpg"
 }
 

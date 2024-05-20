@@ -74,15 +74,8 @@ class PostController extends BaseController<IPost> {
     //the header should contain the token
     //works
     async get_all_posts(req: Request, res: Response) {
-        const user = req.body.user;
         const posts = await Post.find();
-        const result = [];
-        for (const post of posts) {
-            if (post.owner != user._id) {
-                result.push(post);
-            }
-        }
-        res.status(200).send(result);
+        res.status(200).send(posts);
 
     }
 

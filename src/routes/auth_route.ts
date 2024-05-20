@@ -182,6 +182,6 @@ router.delete("/delete", authMiddleware, authController.delete_profile);
 
 router.get('/users', authController.getUsers);
 
-router.get('/user/:id',  authController.getUserById);
+router.get('/user', authMiddleware,  authController.getUserById);
 
 export default router;

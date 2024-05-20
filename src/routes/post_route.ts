@@ -93,7 +93,7 @@ router.post("/upload", authMiddleware, postController.post.bind(postController))
 
 router.get("/my/posts", authMiddleware, postController.get_my_posts.bind(postController));
 
-router.get("/all/posts", authMiddleware, postController.get_all_posts.bind(postController));
+router.get("/all/posts", postController.get_all_posts.bind(postController));
 
 router.delete("/:id", postController.remove.bind(postController));
 

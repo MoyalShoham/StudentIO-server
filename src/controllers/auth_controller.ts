@@ -187,7 +187,7 @@ const getUsers = async (req: Request, res: Response) => {
 
 const getUserById = async (req: Request, res: Response) => {
     console.log(req.params.id)
-    const user = await User.findById(req.params.id);
+    const user = await User.findById(req.body.user);
     console.log(user);
     return res.status(200).send(user);
 }
