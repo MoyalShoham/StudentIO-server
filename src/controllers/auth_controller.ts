@@ -6,10 +6,10 @@ import jwt from "jsonwebtoken";
 
 
 const edit_profile = async (req: Request, res: Response) => {
-    const {full_name, profile_picture, gender, email, password, student } = req.body;
+    const {full_name, profile_picture, gender, email, student } = req.body;
     const _id = req.body.user;
     const newUser = await User.findByIdAndUpdate(_id, 
-        {profile_picture: profile_picture, full_name: full_name, gender: gender, email: email, password: password, student: student})
+        {profile_picture: profile_picture, full_name: full_name, gender: gender, email: email, student: student})
     return res.status(200).send(newUser);
 };
 
