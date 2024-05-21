@@ -175,4 +175,16 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQyMGY1NDM4ODBj
 
 ###
 
-GET http://localhost:3000/auth/user/6646196c911d87ee5feea023
+GET http://localhost:3000/auth/user/664c7de07bd5aa49356df60d
+
+
+
+###
+
+GET http://localhost:3000/auth/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjRjOGNiOTdhZTUyZTM5ZmRmYmY4NDYiLCJpYXQiOjE3MTYyOTQxNjUsImV4cCI6MTcxNjI5NzE2NX0.voRvkuriMyHR_FBbgvpnenPzg7X5HFLlqgcehjKkdOw
+
+
+###
+
+PUT http://localhost:3000/auth/update

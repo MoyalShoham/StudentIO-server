@@ -99,6 +99,7 @@ const login = async (req: Request, res: Response) => {
         if (!valid) {
             return res.status(400).send("invalid email or password");
         }
+        console.log("ze mipo", user._id.toString());
 
         const { accessToken, refreshToken } = generateTokens(user._id.toString());
 
@@ -107,6 +108,7 @@ const login = async (req: Request, res: Response) => {
         } else {
             user.tokens.push(refreshToken);
         }
+        console.log("tokens po", accessToken);
         await user.save();
         return res.status(200).send({
             accessToken: accessToken,
@@ -184,10 +186,16 @@ const getUsers = async (req: Request, res: Response) => {
     const otherUsers = users.filter(user => user._id != req.body.user);
     return res.status(200).send(otherUsers);
 }
+const getUser = async (req: Request, res: Response) => {
+    console.log("getUser");
+    const user = await User.findById(req.body.user);
+    return res.status(200).send(user);
+
+}
 
 const getUserById = async (req: Request, res: Response) => {
     console.log(req.params.id)
-    const user = await User.findById(req.body.user);
+    const user = await User.findById(req.params.id);
     console.log(user);
     return res.status(200).send(user);
 }
@@ -202,5 +210,6 @@ export default {
     edit_profile,
     delete_profile,
     getUsers,
-    getUserById
+    getUserById,
+    getUser
 }

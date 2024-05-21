@@ -180,8 +180,10 @@ router.put("/update", authMiddleware, authController.edit_profile);
 
 router.delete("/delete", authMiddleware, authController.delete_profile);
 
+router.get('/user',authMiddleware, authController.getUser);
+
 router.get('/users', authController.getUsers);
 
-router.get('/user', authMiddleware,  authController.getUserById);
+router.get('/user/:id',  authController.getUserById);
 
 export default router;
