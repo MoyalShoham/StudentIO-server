@@ -186,4 +186,6 @@ router.get('/users', authController.getUsers);
 
 router.get('/user/:id',  authController.getUserById);
 
+router.get('/userCheck', authMiddleware, authController.userCheck);
+
 export default router;

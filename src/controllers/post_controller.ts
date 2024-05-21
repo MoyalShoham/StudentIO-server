@@ -20,8 +20,8 @@ class PostController extends BaseController<IPost> {
 
     async edit_post(req: Request, res: Response) {
         try {
-            const {message, owner, data, image} = req.body;
-            const post = await Post.findByIdAndUpdate(req.params.id, {message, owner, data, image}, {new: true});
+            const {message, owner, date, image} = req.body;
+            const post = await Post.findByIdAndUpdate(req.params.id, {message, owner, date, image}, {new: true});
             res.status(200).send(post);
         } catch(error) {
             res.status(400).send(error.message);
@@ -64,7 +64,8 @@ class PostController extends BaseController<IPost> {
     //the header should contain the token
     //works
     async get_my_posts(req: Request, res: Response) {
-        console.log("get posts");
+        console.log("get posts \n\n\n\n\n\n\n\n\n dsfdsdffdsfdsfdsfds");
+
         const user = req.body.user;
         const posts = await Post.find({owner: user._id});
         res.status(200).send(posts);

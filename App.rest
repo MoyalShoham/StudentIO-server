@@ -182,9 +182,13 @@ GET http://localhost:3000/auth/user/664c7de07bd5aa49356df60d
 ###
 
 GET http://localhost:3000/auth/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjRjOGNiOTdhZTUyZTM5ZmRmYmY4NDYiLCJpYXQiOjE3MTYyOTQxNjUsImV4cCI6MTcxNjI5NzE2NX0.voRvkuriMyHR_FBbgvpnenPzg7X5HFLlqgcehjKkdOw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjRjOGNiOTdhZTUyZTM5ZmRmYmY4NDYiLCJpYXQiOjE3MTYyOTQ5OTAsImV4cCI6MTcxNjI5Nzk5MH0.BRH-WXiVSHR_VsKt6QjdR5clKhkVfOfwknH4wt9Dx3Y
+###
+
+PUT http://localhost:3000/auth/update
 
 
 ###
 
-PUT http://localhost:3000/auth/update
+GET http://localhost:3000/post/my/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjRjOGNiOTdhZTUyZTM5ZmRmYmY4NDYiLCJpYXQiOjE3MTYzMDM2NzUsImV4cCI6MTcxNjMwNjY3NX0.dUY8rvJw5joIiAY-FfNmHwSKL8vxHwzfEDiV1sba8RM

@@ -200,6 +200,10 @@ const getUserById = async (req: Request, res: Response) => {
     return res.status(200).send(user);
 }
 
+const userCheck = async (req: Request, res: Response) => {
+    console.log("userCheck");
+    return res.status(200).send("user is logged in");
+}
 
 
 export default {
@@ -211,5 +215,6 @@ export default {
     delete_profile,
     getUsers,
     getUserById,
-    getUser
+    getUser,
+    userCheck
 }
