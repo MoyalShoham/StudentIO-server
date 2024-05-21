@@ -39,7 +39,9 @@ describe("Auth test", () => {
     test("Post /register", async () => {
         const res = await request(app).post("/auth/register").send(user);
         expect(res.statusCode).toBe(200);
-});
+    });
+
+
 
     test("Post /login", async () => {
         const res = await request(app).post("/auth/login").send(user);
@@ -55,6 +57,27 @@ describe("Auth test", () => {
         expect(accessToken).not.toBeNull();
         expect(refreshToken).not.toBeNull();
 
+    });
+
+    test("getUsers", async () => {
+        const res = await request(app).get("/auth/users");
+        expect(res.statusCode).toBe(200);
+    });
+
+    test("getUser", async () => {
+        const res = await request(app).get("/auth/user")
+            .set('Authorization', 'Bearer ' + accessToken);
+        expect(res.statusCode).toBe(200);
+    });
+
+    test("getUserById", async () => {
+        
+        const u = await User.findOne({ email: user.email });
+        expect(u).not.toBeNull();
+        console.log("user._id" + u._id);
+        const res = await request(app).get(`/auth/user/${u._id}`)
+            .set('Authorization', 'Bearer ' + accessToken);
+        expect(res.statusCode).toBe(200);
     });
 
 
@@ -135,7 +158,7 @@ describe("Auth test", () => {
     // test edeit user
     // using supertest
     test("Put /auth/update", async () => {
-        return await request(app)
+        await request(app)
             .put(`/auth/update`)
             .set('Authorization', 'Bearer ' + accessToken)
             .send({
@@ -148,14 +171,17 @@ describe("Auth test", () => {
 
 
 
-    //need to fix
-    // test("Get /auth/logout", async () => {
-    //     await request(app)
-    //         .get("/auth/logout")
-    //         .set('Authorization', 'Bearer ' + accessToken)
-    //         .expect(200);
+    test("Get /auth/logout", async () => {
+        const res = await request(app).post("/auth/login").send(user);
+        expect(res.statusCode).toBe(200),
+
+        console.log("accessToken: " + accessToken);
+        await request(app)
+            .get("/auth/logout")
+            .set('Authorization', 'Bearer ' + accessToken)
+            .expect(200);
         
-    // });
+    });
 
 
     // test delete user
@@ -163,11 +189,16 @@ describe("Auth test", () => {
 
     //must be the last test!
     test("delete user", async () => {
-        return await request(app)
+        const res = await request(app).post("/auth/login").send(user);
+        expect(res.statusCode).toBe(200);
+        
+        await request(app)
             .delete(`/auth/delete`)
             .set('Authorization', 'Bearer ' + accessToken)
             .expect(200);
     });
+
+
 
 
   

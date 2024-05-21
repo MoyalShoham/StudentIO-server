@@ -1,7 +1,7 @@
 import request from "supertest";
 import appInit from "../App";
 import mongoose from "mongoose";
-import Post from "../models/post_model";
+// import Post from "../models/post_model";
 import { Express } from "express";
 import User from "../models/user_model";
 // import Student from "../models/student_model";
@@ -29,7 +29,7 @@ const testUser = {
 beforeAll(async () => {
     app = await appInit();
     console.log("beforeAll");
-    await Post.deleteMany();
+    // await Post.deleteMany();
     await User.deleteMany({ email: testUser.email });
     await request(app).post("/auth/register").send(testUser);
     const res = await request(app).post("/auth/login").send(testUser);
@@ -63,6 +63,20 @@ describe("Post tests", () => {
             .set('Authorization', 'Bearer ' + testUser.accessToken)
             .send(post);
         expect(res.statusCode).toBe(201);
+    });
+
+    test("Get post/", async () => {
+        const res = await request(app).get("/post");
+        expect(res.statusCode).toBe(200);
+    });
+
+    test("Get /post/:_pid", async () => {
+        const res = await request(app).get("/post");
+        expect(res.statusCode).toBe(200);
+        const data = res.body;
+        const post = data[0];
+        const res2 = await request(app).get("/post/" + post._id);
+        expect(res2.statusCode).toBe(200);
     });
 
     test("Get /my/post - my posts", async () => {
