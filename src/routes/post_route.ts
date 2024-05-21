@@ -95,10 +95,10 @@ router.get("/my/posts", authMiddleware, postController.get_my_posts.bind(postCon
 
 router.get("/all/posts", postController.get_all_posts.bind(postController));
 
-router.delete("/:id", postController.remove.bind(postController));
+// router.delete("/:id", postController.remove.bind(postController));
 
 router.put("/:id", postController.edit_post.bind(postController));
 
-router.delete("/delete/:id", postController.delete_post.bind(postController));
+router.delete("/:id", authMiddleware, postController.delete_post.bind(postController));
 
 export default router;

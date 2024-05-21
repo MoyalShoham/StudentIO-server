@@ -191,4 +191,4 @@ PUT http://localhost:3000/auth/update
 ###
 
 GET http://localhost:3000/post/my/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjRjOGNiOTdhZTUyZTM5ZmRmYmY4NDYiLCJpYXQiOjE3MTYzMDM2NzUsImV4cCI6MTcxNjMwNjY3NX0.dUY8rvJw5joIiAY-FfNmHwSKL8vxHwzfEDiV1sba8RM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjRjOGNiOTdhZTUyZTM5ZmRmYmY4NDYiLCJpYXQiOjE3MTYzMDQyMzgsImV4cCI6MTcxNjMwNzIzOH0.VVkc2q8okuKMxRxxMRtawLFiEuguI129ZFWB7GjK960
