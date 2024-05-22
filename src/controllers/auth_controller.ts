@@ -2,7 +2,94 @@ import { Request, Response } from "express";
 import User from "../models/user_model";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import passport from "passport";
+import dotenv from "dotenv";
 
+dotenv.config();
+import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
+
+
+
+
+// var GoogleStrategy = require('passport-google-oauth20').Strategy;
+
+
+passport.use(new GoogleStrategy({
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: 'http://localhost:3000/auth/auth/google/callback'
+}, async (accessToken, refreshToken, profile, done) => {
+  try {
+
+    console.log('Google profile:', profile);
+    console.log('Google accessToken:', accessToken);
+    console.log('Google refreshToken:', refreshToken);
+    let user = await User.findOne({ googleId: profile.id });
+
+    if (!user) {
+      user = new User({
+        googleId: profile.id,
+        full_name: profile.displayName,
+        email: profile.emails[0].value,
+        profile_picture: profile.photos[0].value,
+        tokens: [accessToken, refreshToken]
+      });
+      await user.save();
+    }
+
+    done(null, user);
+  } catch (error) {
+    done(error, null);
+  }
+}));
+
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((obj, done) => {
+  done(null, obj);
+});
+
+const googleLogin = (req, res) => {
+  passport.authenticate('google', { scope: ['profile', 'email'] })(req, res);
+};
+
+const googleLoginCallback = (req, res, next) => {
+  passport.authenticate('google', { failureRedirect: '/login' }, async (err, user) => {
+    if (err) {
+      console.error('Google authentication error:', err);
+      return next(err);
+    }
+    if (!user) {
+      console.error('No user found after Google authentication.');
+      return res.redirect('/login');
+    }
+
+    req.logIn(user, async (err) => {
+      if (err) {
+        console.error('Login error:', err);
+        return next(err);
+      }
+
+      const { accessToken, refreshToken } = generateTokens(user._id.toString());
+
+      if (user.tokens == null) {
+        user.tokens = [refreshToken];
+      } else {
+        user.tokens.push(refreshToken);
+      }
+
+      await user.save();
+
+      res.status(200).json({
+        accessToken: accessToken,
+        refreshToken: refreshToken,
+        user
+      });
+    });
+  })(req, res, next);
+};
 
 
 const edit_profile = async (req: Request, res: Response) => {
@@ -216,5 +303,8 @@ export default {
     getUsers,
     getUserById,
     getUser,
-    userCheck
+    userCheck,
+    googleLogin,
+    googleLoginCallback
+
 }

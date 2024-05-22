@@ -1,38 +1,40 @@
 import mongoose from "mongoose";
 
 export interface IUser {
-    email: string;
-    password: string;
-    tokens: string[];
+    email?: string;
+    password?: string;
+    tokens?: string[];
     _id?: string;
-    year: string;
-    faculty: string;
+    year?: string;
+    faculty?: string;
     profile_picture?: string;
     full_name: string;
-    gender: string;
-    posts: string[];
+    gender?: string;
+    posts?: string[];
+
+    connectId?: string;
 
 }
 
 const userSchema = new mongoose.Schema<IUser>({
     email: {
         type: String,
-        required: true,
+        required: false,
     },
     password: {
         type: String,
-        required: true,
+        required: false,
     },
     tokens: {
         type: [String]
     },
     year: {
         type: String,
-        required: true
+        required: false
     },
     faculty: {
         type: String,
-        required: true
+        required: false
     },
     profile_picture: {
         type: String,
@@ -45,11 +47,11 @@ const userSchema = new mongoose.Schema<IUser>({
     },
     gender: {
         type: String,
-        required: true
+        required: false
     },
     posts: {
         type: [String],
-        required: true,
+        required: false,
         default: [],
       },
 });
