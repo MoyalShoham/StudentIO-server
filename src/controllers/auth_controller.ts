@@ -168,6 +168,7 @@ const generateTokens = (userId: string): { accessToken: string, refreshToken: st
 const login = async (req: Request, res: Response) => {
     console.log("login");
 
+
     const email = req.body.email;
     const password = req.body.password;
 
@@ -186,8 +187,8 @@ const login = async (req: Request, res: Response) => {
         if (!valid) {
             return res.status(400).send("invalid email or password");
         }
-        console.log("ze mipo", user._id.toString());
-
+        const res1 = await User.findByIdAndUpdate(user._id, {tokens: []});
+        console.log(res1);
         const { accessToken, refreshToken } = generateTokens(user._id.toString());
 
         if (user.tokens == null) {
@@ -195,7 +196,6 @@ const login = async (req: Request, res: Response) => {
         } else {
             user.tokens.push(refreshToken);
         }
-        console.log("tokens po", accessToken);
         await user.save();
         return res.status(200).send({
             accessToken: accessToken,
